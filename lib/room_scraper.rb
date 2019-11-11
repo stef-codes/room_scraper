@@ -21,14 +21,11 @@ class RoomScraper
     
     def scrape_row(row)
         #scrape an individual row
-        time = row.search("time")
-        title = row.search("a.hdrlnk")
-        url = row.search("a.hdrlnk").attr("href")
-        
         {
-            :title => ""
+            :date_created => row.search("time").attr("datetime").text,
+            :title => row.search("a.hdrlnk").text,
+            :url => row.search("a.hdrlnk").attr("href").text,
+            :price => row.css(".result-price").text
         }
-
-
     end
 end 
